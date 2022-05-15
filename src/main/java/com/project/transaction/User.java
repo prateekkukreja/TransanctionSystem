@@ -1,11 +1,13 @@
 package com.project.transaction;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_data")
+@Table(name = "userData")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,11 +22,19 @@ public class User {
     //    @Column(columnDefinition = "VARCHAR(100) GENERATED ALWAYS AS (CONCAT(First_Name,' ',Last_Name))")
 //    private String Full_Name;
 
-    @Column(columnDefinition = "DATETIME DEFAULT")
-    private String Created_At;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime CreatedAt;
 
-    @Column(columnDefinition = "DATETIME DEFAULT")
-    private String Updated_At;
+//    @Column(columnDefinition = "DATETIME DEFAULT")
+//    private String Created_At;
+
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime UpdatedAt;
+
+//    @Column(columnDefinition = "DATETIME DEFAULT")
+//    private String Updated_At;
 
 
     public Integer getId() {
@@ -67,20 +77,20 @@ public class User {
 //        Full_Name = full_Name;
 //    }
 
-    public String getCreated_At() {
-        return Created_At;
+    public LocalDateTime getCreatedAt() {
+        return CreatedAt;
     }
 
-    public void setCreated_At(String created_At) {
-        Created_At = created_At;
+    public void setCreated_At(LocalDateTime created_At) {
+        CreatedAt = created_At;
     }
 
-    public String getUpdated_At() {
-        return Updated_At;
+    public LocalDateTime getUpdated_At() {
+        return UpdatedAt;
     }
 
-    public void setUpdated_At(String updated_At) {
-        Updated_At = updated_At;
+    public void setUpdated_At(LocalDateTime updated_At) {
+        UpdatedAt = updated_At;
     }
 
 

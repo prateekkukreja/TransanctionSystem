@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 @Controller
 public class UserController {
@@ -27,19 +29,16 @@ public class UserController {
         String lastname = "lll";
         String email = "45r67t8@rtygu.com";
         String amount = "10";
-        String type = "a";
+        String type = "Prateek's Test";
 
         System.out.println("In POST Method");
-
-        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         User n = new User();
         n.setFirst_Name(firstname);
         n.setLast_Name(lastname);
         n.setEmail(email + "@mail.com");
-        n.setCreated_At(sdf.format(timestamp));
-        n.setUpdated_At(sdf.format(timestamp));
+        n.setCreated_At(LocalDateTime.now());
+        n.setUpdated_At(LocalDateTime.now());
         repo.save(n);
 
         System.out.println("Data populated in User");
@@ -47,8 +46,8 @@ public class UserController {
         Transactions val = new Transactions();
         val.setAmount(amount);
         val.setType(type);
-        val.setCreated_At(sdf.format(timestamp));
-        val.setUpdated_At(sdf.format(timestamp));
+        val.setCreatedAt(LocalDateTime.now());
+        val.setUpdatedAt(LocalDateTime.now());
         txnrepo.save(val);
 
         System.out.println("Data populated in Transactions");

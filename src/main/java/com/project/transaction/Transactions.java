@@ -1,7 +1,10 @@
 package com.project.transaction;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
@@ -9,15 +12,32 @@ public class Transactions implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "userId")
     private Integer user_id;
 
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "CreatedAt")
+//    private String CreatedAt;
 
-    @Column(columnDefinition = "DATETIME DEFAULT")
-    private String Created_At;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime CreatedAt;
 
-    @Column(columnDefinition = "DATETIME DEFAULT")
-    private String Updated_At;
+//    @Column(name = "CreatedAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+//    private String CreatedAt;
+
+    //    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "UpdatedAt")
+//    private String UpdatedAt;
+
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime UpdatedAt;
+
+//    @Column(name = "UpdatedAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+//    private String UpdatedAt;
 
 
 //    @OneToOne(cascade = CascadeType.ALL)
@@ -55,20 +75,20 @@ public class Transactions implements Serializable {
         this.type = type;
     }
 
-    public String getCreated_At() {
-        return Created_At;
+    public LocalDateTime getCreatedAt() {
+        return CreatedAt;
     }
 
-    public void setCreated_At(String created_At) {
-        Created_At = created_At;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        CreatedAt = createdAt;
     }
 
-    public String getUpdated_At() {
-        return Updated_At;
+    public LocalDateTime getUpdatedAt() {
+        return UpdatedAt;
     }
 
-    public void setUpdated_At(String updated_At) {
-        Updated_At = updated_At;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        UpdatedAt = updatedAt;
     }
 
 }
